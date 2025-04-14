@@ -4,7 +4,7 @@ A React-based interactive tool for sentence construction exercises.
 
 ## Features
 
-- Interactive drag-and-drop sentence construction exercise
+- Interactive sentence construction exercise
 - Timer-based challenges to improve speed and accuracy
 - Random question selection from a pool of exercises
 - Mobile-responsive design for practice on any device
@@ -113,30 +113,3 @@ This project is deployed to Vercel. To visit:
 https://sentence-construction-tool-rishi-mishras-projects.vercel.app/
 
 \
-
-### Manual Deployment
-
-If you prefer to deploy manually:
-
-1. Install Vercel CLI:
-
-   ```
-   npm i -g vercel
-   ```
-
-2. Log in to Vercel:
-
-   ```
-   vercel login
-   ```
-
-3. Deploy from your local directory:
-
-   ```
-   vercel
-   ```
-
-4. To deploy to production:
-   ```
-   vercel --prod
-   ```

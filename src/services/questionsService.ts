@@ -8,12 +8,20 @@
 import sampleData from '../store/sample.json';
 import { Question } from '../types';
 
-const API_BASE_URL = 'http://localhost:3000';
+// Check if we're in production (Vercel) or development
+const isDevelopment = import.meta.env.DEV;
+const API_BASE_URL = isDevelopment ? 'http://localhost:3000' : '';
+const API_BACKUP_URL = isDevelopment ? 'http://localhost:3001' : '';
 
 /** 
  * Fetch questions from the JSON Server API
  */
 export async function fetchQuestions(): Promise<Question[]> {
+    if (!isDevelopment) {
+        // In production, go straight to local data
+        return getQuestionsFromLocal();
+    }
+    
     try {
         const response = await fetch(`${API_BASE_URL}/questions`);
         if (!response.ok) throw new Error("Error fetching questions");
@@ -39,13 +47,18 @@ export async function fetchQuestions(): Promise<Question[]> {
  * Fetch status information from the server
  */
 export async function fetchStatus(): Promise<any> {
+    if (!isDevelopment) {
+        // In production, return empty status
+        return { status: 'offline', mode: 'local' };
+    }
+    
     try {
-        const response = await fetch("http://localhost:3001/status");
+        const response = await fetch(`${API_BACKUP_URL}/status`);
         if (!response.ok) throw new Error("Error fetching status");
         return response.json();
     } catch (err) {
         console.error("Server status check failed:", err);
-        throw err;
+        return { status: 'offline', mode: 'local' };
     }
 }
 
@@ -53,8 +66,13 @@ export async function fetchStatus(): Promise<any> {
  * Fetch question data from the server
  */
 export async function fetchData(): Promise<any> {
+    if (!isDevelopment) {
+        // In production, go straight to local data
+        return { data: sampleData.data };
+    }
+    
     try {
-        const response = await fetch("http://localhost:3001/data");
+        const response = await fetch(`${API_BACKUP_URL}/data`);
         if (!response.ok) throw new Error("Error fetching data");
         return response.json();
     } catch (err) {
@@ -69,6 +87,11 @@ export async function fetchData(): Promise<any> {
  * Falls back to local data if the API request fails
  */
 export async function getQuestionsFromAPI(): Promise<Question[]> {
+    if (!isDevelopment) {
+        // In production, go straight to local data
+        return getQuestionsFromLocal();
+    }
+    
     try {
         const data = await fetchData();
         
@@ -92,13 +115,18 @@ export async function getQuestionsFromAPI(): Promise<Question[]> {
  * Fetch message from the server (for notifications)
  */
 export async function fetchMessage(): Promise<any> {
+    if (!isDevelopment) {
+        // In production, return empty message
+        return { message: '' };
+    }
+    
     try {
-        const response = await fetch("http://localhost:3001/message");
+        const response = await fetch(`${API_BACKUP_URL}/message`);
         if (!response.ok) throw new Error("Error fetching message");
         return response.json();
     } catch (err) {
         console.error("Message fetch failed:", err);
-        throw err;
+        return { message: '' };
     }
 }
 
@@ -106,13 +134,18 @@ export async function fetchMessage(): Promise<any> {
  * Fetch user activity data from the server
  */
 export async function fetchActivity(): Promise<any> {
+    if (!isDevelopment) {
+        // In production, return empty activity
+        return { activity: [] };
+    }
+    
     try {
-        const response = await fetch("http://localhost:3001/activity");
+        const response = await fetch(`${API_BACKUP_URL}/activity`);
         if (!response.ok) throw new Error("Error fetching activity");
         return response.json();
     } catch (err) {
         console.error("Activity fetch failed:", err);
-        throw err;
+        return { activity: [] };
     }
 }
 

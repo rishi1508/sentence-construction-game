@@ -1,0 +1,50 @@
+{
+  "name": "sentence-construction-tool",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "json-server": "json-server --watch db.json --port 3001"
+  },
+  "dependencies": {
+    "@chakra-ui/color-mode": "^2.2.0",
+    "@chakra-ui/next-js": "^2.4.2",
+    "@chakra-ui/provider": "^2.4.2",
+    "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/styled-system": "^2.12.0",
+    "@chakra-ui/system": "^2.6.2",
+    "@chakra-ui/theme": "^3.3.0",
+    "@chakra-ui/theme-tools": "^2.2.6",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@radix-ui/react-icons": "^1.3.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.18.2",
+    "lucide-react": "^0.488.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.5.0",
+    "shadcn-ui": "^0.9.5",
+    "tailwind-merge": "^3.2.0",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "json-server": "^1.0.0-beta.3",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0"
+  }
+}
